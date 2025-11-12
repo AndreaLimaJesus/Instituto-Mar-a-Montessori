@@ -1,532 +1,445 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acerca de Nosotros - Instituto María Montessori</title> 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acerca de Nosotros - Instituto María Montessori</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet">
 
-<style>
-  /* --- ESTILOS GLOBALES --- */
-  * { box-sizing: border-box; }
+  <style>
+    /* --- ESTILOS GLOBALES --- */
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #fff6e0;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #fff6e0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-  }
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+    }
 
-  main { flex-grow: 1; }
+    main {
+      flex-grow: 1;
+    }
 
-  /* --- HEADER Y FOOTER --- */
-  header {
-    background-color: #ffa500;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: bold;
-  }
+    /* --- HEADER --- */
+    header.header {
+      width: 100%;
+      background: linear-gradient(135deg, #ffa500, #ffcc00);
+      padding: 15px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
 
-  footer {
-    text-align: center;
-    background-color: #ffa500;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    margin-top: 30px; 
-  }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-  /* --- NAVEGACIÓN --- */
-  nav {
-    background-color: #ffcc00;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    flex-wrap: wrap;
-  }
+    .logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 2px solid white;
+      background-color: #fff;
+    }
 
-  .nav-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+    .logo-container h1 {
+      font-size: 1.6rem;
+      color: white;
+      font-weight: bold;
+    }
 
-  .nav-links a {
-    color: #333;
-    text-decoration: none;
-    padding: 14px 20px;
-    font-weight: bold;
-    transition: 0.3s;
-    display: block;
-  }
+    /* --- NAV --- */
+    nav {
+      background-color: #ffcc00;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
 
-  .nav-links a:hover {
-    background-color: #ffa500;
-    color: white;
-    transform: translateY(-3px);
-  }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-  .menu-toggle {
-    display: none;
-    font-size: 30px;
-    background: none;
-    border: none;
-    color: #333;
-    cursor: pointer;
-    padding: 10px;
-  }
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      padding: 14px 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-  /* --- CONTENIDO PRINCIPAL --- */
-  main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+    .nav-links a:hover {
+      background-color: #ffa500;
+      color: white;
+      transform: translateY(-3px);
+    }
 
-  .content-page {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 30px 10px;
-    flex-direction: column;
-  }
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      background: none;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      padding: 10px;
+    }
 
-  .content-text {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 900px;
-    width: 100%;
-    padding: 30px;
-    margin: 0 auto;
-  }
+    /* --- CONTENIDO --- */
+    main {
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-  .content-text h2 {
-    color: #ffa500;
-    margin-top: 0;
-    font-size: 2.2em;
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-  }
-
-  .content-text p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    animation: fadeIn 1s ease-out 0.3s forwards;
-    opacity: 0;
-  }
-
-  .content-text ul {
-    list-style-type: none;
-    padding-left: 0;
-    margin-top: 20px;
-  }
-
-  .content-text li {
-    font-size: 1.1em;
-    line-height: 1.8;
-    padding: 8px 0 8px 35px;
-    position: relative;
-    font-weight: 500;
-    opacity: 0;
-    animation: fadeInRight 0.7s ease-out forwards;
-  }
-
-  .content-text li:nth-child(1) { animation-delay: 1s; }
-  .content-text li:nth-child(2) { animation-delay: 1.3s; }
-
-  .content-text li::before {
-    content: '✓';
-    color: #ffa500;
-    font-weight: bold;
-    font-size: 1.2em;
-    position: absolute;
-    left: 10px;
-    top: 8px;
-  }
-
-  /* --- SECCIÓN DEL EQUIPO --- */
-  .founders {
-    text-align: center;
-    margin-top: 50px;
-    animation: fadeIn 1s ease forwards;
-  }
-
-  .founders h3 {
-    color: #ffa500;
-    font-size: 1.8em;
-    margin-bottom: 25px;
-  }
-
-  .founders-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 25px;
-  }
-
-  .founder-card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 200px;
-    text-align: center;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    opacity: 0;
-    animation: zoomIn 0.8s ease forwards;
-  }
-
-  .founder-card:nth-child(1) { animation-delay: 0.2s; }
-  .founder-card:nth-child(2) { animation-delay: 0.4s; }
-  .founder-card:nth-child(3) { animation-delay: 0.6s; }
-  .founder-card:nth-child(4) { animation-delay: 0.8s; }
-  .founder-card:nth-child(5) { animation-delay: 1s; }
-
-  .founder-card:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-  }
-
-  .founder-card img {
-    width: 100%;
-    height: 200px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-
-  .founder-card p {
-    color: #333;
-    font-weight: bold;
-  }
-
-  /* --- ANIMACIONES --- */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  /* --- RESPONSIVE --- */
-  @media (max-width: 768px) {
-    .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
-    .nav-links.active { display: flex; }
-    .menu-toggle { display: block; }
-  }
-</style>
-</head>
-<body>
-
-<header class="header">
-  <div class="logo-container">
-    <img src="logo.jpg" alt="Logo del colegio" class="logo">
-    <h1>Instituto María Montessori</h1>
-  </div>
-</header>
-
-<style>
-  /* === HEADER GENERAL === */
-  .header {
-    width: 100%;
-    background: linear-gradient(135deg, #ffa500, #ffcc00);
-    padding: 15px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-    border-bottom: 3px solid #fff3;
-  }
-
-  /* === LOGO Y NOMBRE === */
-  .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 2px solid white;
-    background-color: #fff;
-  }
-
-  .logo-container h1 {
-    font-size: 1.6rem;
-    color: white;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  }
-
-  /* === MENÚ === */
-  .nav {
-    display: flex;
-    gap: 25px;
-  }
-
-  .nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .nav a:hover {
-    color: #333;
-    background: #fff;
-    padding: 6px 12px;
-    border-radius: 20px;
-  }
-
-  /* === RESPONSIVE === */
-  @media (max-width: 768px) {
-    .header {
+    .content-page {
+      display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 20px;
+      padding: 30px 10px;
     }
 
-    .nav {
+    .content-text {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      width: 100%;
+      padding: 30px;
+      margin-bottom: 40px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .content-text h2 {
+      color: #ffa500;
+      margin-top: 0;
+      font-size: 2.2em;
+    }
+
+    .content-text p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .content-text ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+
+    .content-text li {
+      font-size: 1.1em;
+      line-height: 1.8;
+      padding: 8px 0;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .content-text li::before {
+      content: '✓';
+      color: #ffa500;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* --- SECCIÓN "¿QUÉ OFRECEMOS?" --- */
+    .ofrecemos {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 70px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, #fff7e6, #ffffff);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(255, 122, 0, 0.15);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .ofrecemos h2 {
+      font-size: 2.3em;
+      color: #ff7a00;
+      margin-bottom: 15px;
+      animation: slideDown 1s ease-in-out;
+    }
+
+    .ofrecemos .intro {
+      max-width: 800px;
+      margin: 0 auto 50px;
+      font-size: 1.1em;
+      color: #444;
+      line-height: 1.7;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .ofrecemos-container {
+      display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      margin-top: 10px;
+      gap: 30px;
+      text-align: center;
     }
-  }
-</style>
 
-<nav>
-  <div class="nav-links">
-    <a href="index.html">Inicio</a>
-    <a href="nosotros.html">Nosotros</a>
-    <a href="vision.html">Visión</a>
-    <a href="valores.html">Valores</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="uniformes.html">Uniformes</a>
-    <a href="pagos.html">Pagos</a>
-  </div>
-  <button class="menu-toggle" id="menu-toggle">&#9776;</button>
-</nav>
+    .card {
+      background: #fff;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(255, 122, 0, 0.2);
+      width: 280px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
 
-<main>
-  <section class="content-page">
-    <div class="content-text">
-      <h2>ACERCA DE NOSOTROS</h2>
-      <p>
-        Somos una institución que brinda educación de calidad y formación integral a nuestros estudiantes, 
-        con un equipo de trabajo comprometido, organizado y responsable. Nos preocupamos por cultivar su inteligencia emocional, 
-        creatividad y sentido de responsabilidad social, dentro de un ambiente de respeto y colaboración que les permita 
-        ser ciudadanos ejemplares y enfrentar con éxito los retos del futuro.
-      </p>
+    .card h3 {
+      color: #ff7a00;
+      margin-bottom: 12px;
+      font-size: 1.4em;
+    }
 
-      <ul>
-        <li>Responsabilidad</li>
-        <li>Excelencia</li>
-      </ul>
+    .card p {
+      color: #333;
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(255, 122, 0, 0.35);
+    }
+
+    .ofrecemos .final {
+      margin-top: 50px;
+      font-size: 1.2em;
+      color: #444;
+      animation: fadeIn 2s ease-in-out;
+      font-style: italic;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* --- FUNDADORAS --- */
+    .founders {
+      text-align: center;
+      margin-top: 50px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .founders h3 {
+      color: #ffa500;
+      font-size: 1.8em;
+      margin-bottom: 25px;
+    }
+
+    .founders-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .founder-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 0;
+      animation: zoomIn 0.8s ease forwards;
+    }
+
+    .founder-card img {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .founder-card p {
+      color: #333;
+      font-weight: bold;
+    }
+
+    .founder-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      background-color: #ffa500;
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+
+    /* --- ANIMACIONES --- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; width: 100%; text-align: center; }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      .ofrecemos-container { flex-direction: column; align-items: center; }
+      .card { width: 90%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.jpg" alt="Logo del colegio" class="logo">
+      <h1>Instituto María Montessori</h1>
     </div>
+  </header>
 
-    <section class="ofrecemos">
-  <h2>¿Qué ofrecemos?</h2>
-  <p class="intro">
-    Garantizamos educación de calidad porque nos interesa el proceso de enseñanza-aprendizaje de cada uno de nuestros alumnos. 
-    Nos adaptamos a su propio ritmo, permitiendo un aprendizaje profundo y significativo, guiado según sus necesidades e intereses.
-  </p>
-
-  <div class="ofrecemos-container">
-    <div class="card">
-      <h3>Enseñanza</h3>
-      <p>
-        Trabajamos con materiales Montessori, didácticos y manipulativos, que estimulan su curiosidad y motivación. 
-        Contamos con aulas diseñadas por edades y espacios ambientados con los diferentes ejes articuladores.
-      </p>
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="vision.html">Visión</a>
+      <a href="valores.html">Valores</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="uniformes.html">Uniformes</a>
+      <a href="pagos.html">Pagos</a>
     </div>
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+  </nav>
 
-    <div class="card">
-      <h3>Invitación</h3>
-      <p>
-        En el Instituto María Montessori creemos en la importancia de formar no solo estudiantes competentes, 
-        sino también individuos responsables y creativos. 
-        Fomentamos un ambiente inclusivo, colaborativo y lleno de motivación.
-      </p>
-    </div>
+  <main>
+    <section class="content-page">
+      <div class="content-text">
+        <h2>ACERCA DE NOSOTROS</h2>
+        <p>
+          Somos una institución que brinda educación de calidad y formación integral a nuestros estudiantes,
+          con un equipo de trabajo comprometido, organizado y responsable. Nos preocupamos por cultivar su inteligencia emocional,
+          creatividad y sentido de responsabilidad social, dentro de un ambiente de respeto y colaboración.
+        </p>
+        <ul>
+          <li>Responsabilidad</li>
+          <li>Excelencia</li>
+        </ul>
+      </div>
 
-    <div class="card">
-      <h3>Prestigio</h3>
-      <p>
-        En el Instituto María Montessori nos hemos consolidado como una de las escuelas más prestigiosas de la región, 
-        gracias a nuestro compromiso con la excelencia educativa y el desarrollo integral de nuestros estudiantes.
-      </p>
-    </div>
-  </div>
+      <section class="ofrecemos">
+        <h2>¿Qué ofrecemos?</h2>
+        <p class="intro">
+          Garantizamos educación de calidad porque nos interesa el proceso de enseñanza-aprendizaje de cada uno de nuestros alumnos.
+          Nos adaptamos a su propio ritmo, permitiendo un aprendizaje profundo y significativo, guiado según sus necesidades e intereses.
+        </p>
 
-  <p class="final">
-    ¡Ven y vive la experiencia de un aprendizaje significativo en un entorno acogedor y motivador!
-  </p>
-</section>
+        <div class="ofrecemos-container">
+          <div class="card">
+            <h3>Enseñanza</h3>
+            <p>
+              Trabajamos con materiales Montessori, didácticos y manipulativos, que estimulan su curiosidad y motivación.
+              Contamos con aulas diseñadas por edades y espacios ambientados con los diferentes ejes articuladores.
+            </p>
+          </div>
 
-<style>
-.ofrecemos {
-  padding: 60px 20px;
-  text-align: center;
-  background: linear-gradient(180deg, #fff7e6, #fff);
-  animation: fadeIn 1.5s ease-in-out;
-}
+          <div class="card">
+            <h3>Invitación</h3>
+            <p>
+              En el Instituto María Montessori creemos en formar no solo estudiantes competentes,
+              sino también individuos responsables y creativos. Fomentamos un ambiente inclusivo y lleno de motivación.
+            </p>
+          </div>
 
-.ofrecemos h2 {
-  font-size: 2.2em;
-  color: #ff7a00;
-  margin-bottom: 15px;
-  animation: slideDown 1s ease-in-out;
-}
-
-.ofrecemos .intro {
-  max-width: 900px;
-  margin: 0 auto 40px;
-  font-size: 1.1em;
-  color: #444;
-  line-height: 1.6;
-  animation: fadeInUp 1.5s ease-in-out;
-}
-
-.ofrecemos-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-}
-
-.card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(255, 122, 0, 0.2);
-  width: 280px;
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 1.5s ease-in-out;
-}
-
-.card h3 {
-  color: #ff7a00;
-  margin-bottom: 10px;
-  font-size: 1.3em;
-}
-
-.card p {
-  color: #333;
-  font-size: 1em;
-  line-height: 1.6;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.35);
-}
-
-.ofrecemos .final {
-  margin-top: 40px;
-  font-size: 1.2em;
-  color: #444;
-  animation: fadeIn 2s ease-in-out;
-  font-style: italic;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes fadeInUp {
-  from {opacity: 0; transform: translateY(40px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-@keyframes slideDown {
-  from {opacity: 0; transform: translateY(-30px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .ofrecemos-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .card {
-    width: 90%;
-  }
-}
-</style>
-
-    <!-- SECCIÓN FUNDADORAS -->
-    <div class="founders">
-      <h3>Fundadoras del Instituto</h3>
-      <div class="founders-container">
-        <div class="founder-card">
-          <img src="andrea.jpg" alt="Andrea Lima de Jesús">
-          <p>Andrea Lima de Jesús</p>
+          <div class="card">
+            <h3>Prestigio</h3>
+            <p>
+              Nos hemos consolidado como una de las escuelas más prestigiosas de la región,
+              gracias a nuestro compromiso con la excelencia educativa y el desarrollo integral de nuestros estudiantes.
+            </p>
+          </div>
         </div>
-        <div class="founder-card">
-          <img src="joselyn.jpg" alt="Joselyn López Ibáñez">
-          <p>Joselyn López Ibáñez</p>
-        </div>
-        <div class="founder-card">
-          <img src="natalia.jpg" alt="Natalia Joselin Bravo Ballarteño">
-          <p>Natalia Joselin Bravo Ballarteño</p>
-        </div>
-        <div class="founder-card">
-          <img src="carmen.jpg" alt="María del Carmen De Los Santos De Paz">
-          <p>María del Carmen De Los Santos De Paz</p>
-        </div>
-        <div class="founder-card">
-          <img src="maria.jpg" alt="Mariana Serrano Morales">
-          <p>Mariana Serrano Morales</p>
+
+        <p class="final">
+          ¡Ven y vive la experiencia de un aprendizaje significativo en un entorno acogedor y motivador!
+        </p>
+      </section>
+
+      <div class="founders">
+        <h3>Fundadoras del Instituto</h3>
+        <div class="founders-container">
+          <div class="founder-card">
+            <img src="andrea.jpg" alt="Andrea Lima de Jesús">
+            <p>Andrea Lima de Jesús</p>
+          </div>
+          <div class="founder-card">
+            <img src="joselyn.jpg" alt="Joselyn López Ibáñez">
+            <p>Joselyn López Ibáñez</p>
+          </div>
+          <div class="founder-card">
+            <img src="natalia.jpg" alt="Natalia Joselin Bravo Ballarteño">
+            <p>Natalia Joselin Bravo Ballarteño</p>
+          </div>
+          <div class="founder-card">
+            <img src="carmen.jpg" alt="María del Carmen De Los Santos De Paz">
+            <p>María del Carmen De Los Santos De Paz</p>
+          </div>
+          <div class="founder-card">
+            <img src="maria.jpg" alt="Mariana Serrano Morales">
+            <p>Mariana Serrano Morales</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
-<footer>© 2025 Instituto María Montessori - Todos los derechos reservados</footer>
+  <footer>© 2025 Instituto María Montessori - Todos los derechos reservados</footer>
 
-<script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  menuToggle.onclick = () => navLinks.classList.toggle('active');
-</script>
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.onclick = () => navLinks.classList.toggle('active');
+  </script>
 
 </body>
 </html>
