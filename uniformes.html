@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniformes - Instituto Maria Montessori</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<style>
+  /* --- ESTILOS GLOBALES BASE (Copiados de tu index.html) --- */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff6e0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main {
+    flex-grow: 1; 
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* --- HEADER Y FOOTER --- */
+  header {
+    background-color: #ffa500;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  footer {
+    text-align: center;
+    background-color: #ffa500;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    margin-top: 30px; 
+  }
+
+  /* --- NAVEGACIÓN RESPONSIVA --- */
+  nav {
+    background-color: #ffcc00;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    color: #333;
+    text-decoration: none;
+    padding: 14px 20px;
+    font-weight: bold;
+    transition: 0.3s;
+    display: block;
+  }
+
+  .nav-links a:hover {
+    background-color: #ffa500;
+    color: white;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    padding: 10px;
+  }
+  
+  .nav-links.active {
+      display: flex;
+  }
+
+  /* --- ESTILOS ESPECÍFICOS DE UNIFORMES --- */
+  .uniform-header {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .uniform-header h2 {
+    color: #ffa500;
+    font-size: 2.2em;
+  }
+  .uniform-header p {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1em;
+  }
+  
+  .uniform-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .uniform-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .uniform-card:hover {
+    transform: translateY(-5px); /* Animación: ligero levantamiento */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
+
+  .uniform-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .uniform-content {
+    padding: 20px;
+  }
+  
+  .uniform-content h3 {
+    color: #ffcc00;
+    margin-top: 0;
+    border-bottom: 2px solid #ffa500;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+
+  .uniform-purchase-info {
+    background-color: #ffcc00; /* Color de tu barra de navegación */
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .uniform-purchase-info h3 {
+    color: #333;
+    margin-top: 0;
+    font-size: 1.8em;
+  }
+  .uniform-purchase-info p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+  }
+  .purchase-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #ffa500;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  .purchase-button:hover {
+    background-color: #e69500;
+    transform: scale(1.05); /* Animación al pasar el ratón */
+  }
+
+  /* --- MEDIA QUERY PARA RESPONSIVIDAD (MÓVIL) --- */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <img src="imagenes/logo.jpg" alt="Logo del colegio" class="logo">
+    <h1>Instituto María Montessori</h1>
+  </div>
+</header>
+
+<style>
+  /* === HEADER GENERAL === */
+  .header {
+    width: 100%;
+    background: linear-gradient(135deg, #ffa500, #ffcc00);
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #fff3;
+  }
+
+  /* === LOGO Y NOMBRE === */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: #fff;
+  }
+
+  .logo-container h1 {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* === MENÚ === */
+  .nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav a:hover {
+    color: #333;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+  }
+</style>
+
+<nav>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a> 
+    <a href="nosotros.html">Nosotros</a> 
+    <a href="vision.html">Vision</a> 
+    <a href="valores.html">Valores</a> 
+    <a href="contacto.html">Contacto</a>
+    <a href="uniformes.html">Uniformes</a> 
+    <a href="pagos.html">Pagos</a>
+  </div>
+<button class="menu-toggle" id="menu-toggle">☰</button>
+</nav>
+
+<main>
+    <section class="uniform-header">
+        <h2>Uniformes Institucionales</h2>
+        <p>El uso del uniforme fomenta el sentido de pertenencia y promueve la igualdad entre nuestros estudiantes. A continuación, presentamos los modelos requeridos para las actividades escolares y deportivas.</p>
+    </section>
+
+    <section class="uniform-gallery">
+        
+        <div class="uniform-card">
+            <img src="imagenes/img14.jpg" alt="Uniforme de Diario">
+            <div class="uniform-content">
+                <h3>Uniforme Diario</h3>
+                <p>Uso obligatorio de lunes, martes y jueves.</p>
+                <ul>
+                    <li>Polo institucional color blanco.</li>
+                    <li>Pantalón/falda gris.</li>
+                    <li>Chaqueta azul marino con escudo.</li>
+                    <li>Zapatos negros (no deportivos).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="uniform-card">
+            <img src="imagenes/img13.jpg" alt="Uniforme Deportivo">
+            <div class="uniform-content">
+                <h3>Uniforme Deportivo</h3>
+                <p>Uso obligatorio los días miércoles y viernes.</p>
+                <ul>
+                    <li>Playera tipo polo deportiva (color según nivel).</li>
+                    <li>Pantalón deportivo gris con logo.</li>
+                    <li>Sudadera institucional.</li>
+                    <li>Tenis blancos o negros.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="uniform-card">
+            <img src="imagenes/img11.jpg" alt="Uniforme de Gala">
+            <div class="uniform-content">
+                <h3>Uniforme de Eventos</h3>
+                <p>Uso exclusivo en ceremonias y actos cívicos.</p>
+                <ul>
+                    <li>Camisa blanca de vestir.</li>
+                    <li>Corbata/Moño institucional.</li>
+                    <li>Saco (opcional).</li>
+                    <li>Pantalón/falda de vestir azul marino.</li>
+                </ul>
+            </div>
+        </div>
+        
+    </section>
+    
+    <section class="uniform-purchase-info">
+        <h3>¿Dónde Adquirir el Uniforme?</h3>
+        <p>Los uniformes oficiales solo se venden a través de nuestro proveedor autorizado.</p>
+        <p>Puede agendar una cita para tomas de medidas o consultar tallas disponibles en la siguiente página:</p>
+        <a href="pagos.html" class="purchase-button">Ir a Proveedor Autorizado</a>
+    </section>
+
+</main>
+
+<footer>© 2025 Instituto María Montessori - Todos los derechos reservados</footer>
+
+<script>
+  /* --- CÓDIGO JAVASCRIPT: MENÚ DE HAMBURGUESA --- */
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+      menuToggle.onclick = () => {
+          navLinks.classList.toggle('active');
+      };
+  }
+</script>
+
+</body>
+</html>

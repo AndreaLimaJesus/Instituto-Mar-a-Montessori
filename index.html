@@ -43,6 +43,7 @@
     font-weight: bold;
     margin-top: 30px;
   }
+  
 
   /* --- NAVEGACIÓN RESPONSIVA --- */
   nav {
@@ -170,57 +171,85 @@
   .welcome h2 {
     color: #ffa500;
   }
+/* Estilos para la sección: acomoda las tarjetas */
+.offerings {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 30px; 
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
-  /* Sección de "Tarjetas" (Cards) */
-  .offerings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px 0;
-  }
+/* 1. El contenedor principal de la tarjeta */
+.card {
+  background-color: transparent;
+  width: 280px; 
+  height: 380px; 
+  perspective: 1000px; /* CLAVE 1: Define el espacio 3D */
+  border: none;
+}
 
-  .card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 300px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+/* 2. El contenedor interno: el que gira */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s; 
+  transform-style: preserve-3d; /* CLAVE 2: Mantiene el 3D */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); 
+  border-radius: 15px; 
+  overflow: hidden; 
+}
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-  }
+/* 3. El efecto al pasar el mouse */
+.card:hover .card-inner {
+  transform: rotateY(180deg); 
+}
 
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+/* 4. Estilos de AMBAS caras (frontal y trasera) */
+.card-front,
+.card-back {
+  /* CLAVE 3: Hace que se apilen una encima de la otra */
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  /* CLAVE 4: Oculta la cara que está de espaldas al usuario */
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden; 
+  border-radius: 15px;
+  box-sizing: border-box; 
+  padding: 20px;
+}
 
-  .card-content {
-    padding: 20px;
-  }
-  .card-content h3 {
-    margin-top: 0;
-    color: #ffa500;
-  }
-  .card-content a {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #ffa500;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-  }
-  .card-content a:hover {
-    background-color: #e69500;
-  }
+/* 5. Estilos de la cara frontal (la imagen) */
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* 6. Estilos de la cara trasera (el texto) */
+.card-back {
+  background-color: #004a99; /* FONDO AZUL OSCURO */
+  color: white; /* TEXTO BLANCO */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* CLAVE 5: La parte trasera comienza mirando hacia atrás */
+  transform: rotateY(180deg);
+}
+
+.card-back h3 {
+  margin-top: 0;
+  font-size: 1.4em;
+}
+
+.card-back p {
+  font-size: 1em;
+}
   
   /* --- NUEVA SECCIÓN: SOBRE NOSOTROS --- */
   .about {
@@ -373,16 +402,99 @@
 </head>
 <body>
 
-<header>INSTITUTO MARIA MONTESSORI </header>
+<header class="header">
+  <div class="logo-container">
+    <img src="imagenes/logo.jpg" alt="Logo del colegio" class="logo">
+    <h1>Instituto María Montessori</h1>
+  </div>
+</header>
+
+<style>
+  /* === HEADER GENERAL === */
+  .header {
+    width: 100%;
+    background: linear-gradient(135deg, #ffa500, #ffcc00);
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #fff3;
+  }
+
+  /* === LOGO Y NOMBRE === */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: #fff;
+  }
+
+  .logo-container h1 {
+    font-size: 1.6rem;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* === MENÚ === */
+  .nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav a:hover {
+    color: #333;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+  }
+</style>
+
 
 <nav>
   <div class="nav-links">
-    <a href="#">Inicio</a>
-    <a href="#">Nosotros</a>
-    <a href="#">Mision</a>
-    <a href="#">Vision</a>
-    <a href="#">Valores</a>
-    <a href="#">Contacto</a>
+    <a href="index.html">Inicio</a> 
+    <a href="nosotros.html">Nosotros</a> 
+    <a href="vision.html">Vision</a> 
+    <a href="valores.html">Valores</a> 
+    <a href="contacto.html">Contacto</a>
+    <a href="uniformes.html">Uniformes</a> 
+    <a href="pagos.html">Pagos</a>
   </div>
 <button class="menu-toggle" id="menu-toggle">&#9776;</button>
 </nav>
@@ -415,95 +527,822 @@
 </div>
 
 <main>
-  <section class="welcome">
-    <h2>Bienvenidos</h2>
-    <h3>Bienvenido a la Primaria Maria Montessori: Forjando Líderes del Mañana con la Sabiduría de hoy en nuestra institución 
-celebramos la etapa fundamental de la educación primaria como una oportunidad única para consolidar los cimientos del conocimiento y cultivar las habilidades esenciales que permitirán a nuestros estudiantes prosperaren un mundo
-en constante evolución.
-</p>
-  </section>
+<section class="welcome">
+  <h2>Bienvenidos</h2>
+  <p>
+    Bienvenido a la <strong>Primaria Maria Montessori</strong>: Forjando Líderes del Mañana con la Sabiduría de hoy.  
+    En nuestra institución celebramos la etapa fundamental de la educación primaria como una oportunidad única 
+    para consolidar los cimientos del conocimiento y cultivar las habilidades esenciales que permitirán a nuestros 
+    estudiantes prosperar en un mundo en constante evolución.
+  </p>
+</section>
+
+<style>
+  .welcome {
+    background: linear-gradient(135deg, #ffcc00 0%, #ffa500 100%);
+    padding: 100px 10%;
+    text-align: center;
+    color: #1d1818;
+    border-radius: 15px;
+    margin: 70px auto;
+    max-width: 1200px;
+    box-shadow: 0 10px 25px rgba(32, 26, 26, 0.15);
+    overflow: hidden;
+    position: relative;
+    animation: fadeInSection 1.2s ease forwards;
+  }
+
+  .welcome::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+    animation: shimmer 6s infinite linear;
+  }
+
+  .welcome h2 {
+    font-size: 2.8rem;
+    margin-bottom: 30px;
+    color: #351c1c;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    animation: slideDown 1s ease forwards;
+  }
+
+  .welcome p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    max-width: 1000px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    animation: fadeUp 1.4s ease forwards, floatText 5s ease-in-out infinite;
+  }
+
+  strong {
+    color: #ff8800;
+  }
+
+  @keyframes slideDown {
+    from {opacity: 0; transform: translateY(-40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeUp {
+    from {opacity: 0; transform: translateY(50px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes shimmer {
+    0% {transform: translateX(-50%);}
+    100% {transform: translateX(50%);}
+  }
+
+  @keyframes floatText {
+    0%, 100% {transform: translateY(0);}
+    50% {transform: translateY(-8px);}
+  }
+
+  @keyframes fadeInSection {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @media (max-width: 768px) {
+    .welcome {
+      padding: 70px 6%;
+    }
+    .welcome h2 {
+      font-size: 2.2rem;
+    }
+    .welcome p {
+      font-size: 1.05rem;
+      padding: 25px 20px;
+    }
+  }
+</style>
+
 
   <hr>
 
-  <section class="offerings">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1580582932707-5207e3f94ee1?auto=format&fit=crop&w=800&q=80" alt="">
-      <div class="card-content">
-        <h3>Ingenierías y Tecnología</h3>
-        <p>Preparamos a los líderes del mañana en innovación y desarrollo tecnológico.</p>
-        <a href="#">Ver Carreras</a>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80" alt="">
-      <div class="card-content">
-        <h3>Ciencias Sociales y Negocios</h3>
-        <p>Forma tu visión estratégica y habilidades de liderazgo en el mundo empresarial.</p>
-        <a href="#">Ver Carreras</a>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1532187863486-abf9db55b6c5?auto=format&fit=crop&w=800&q=80" alt="">
-      <div class="card-content">
-        <h3>Arte y Humanidades</h3>
-        <p>Explora la creatividad, la cultura y el pensamiento crítico en nuestros programas.</p>
-        <a href="#">Ver Carreras</a>
-      </div>
-    </div>
-  </section>
+<section class="areas-formativas">
+  <h2>Nuestros Ejes Formativos</h2>
 
-  <hr>
+  <div class="cards-container">
 
-    <section class="about">
-    <div class="about-content">
-      <h2>Nuestra Misión</h2>
-      <p>Somos una institución dedicada a la excelencia académica, la investigación innovadora y el desarrollo integral de nuestros estudiantes. Nuestra misión es formar profesionales éticos y competentes, capaces de enfrentar los desafíos del siglo XXI.</p>
-      <p>Con un cuerpo docente de primer nivel y instalaciones de vanguardia, ofrecemos un ambiente de aprendizaje dinámico y multicultural.</p>
+    <!-- === TARJETAS CON TEXTO DEBAJO + EFECTO FLIP === -->
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img8.jpg" alt="Saberes y Pensamiento Científico">
+        </div>
+        <div class="card-back">
+          <h3>Saberes y Pensamiento Científico</h3>
+          <p>Promueve la comprensión y la relación del mundo natural y social desde la perspectiva de la ciencia y las matemáticas.</p>
+        </div>
+      </div>
+      <div class="card-info">
+        <h3>Saberes y Pensamiento Científico</h3>
+        <p>Promueve la comprensión y la relación del mundo natural y social desde la perspectiva de la ciencia y las matemáticas.</p>
+      </div>
     </div>
-    <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=800&q=80" alt="Edificio principal de la universidad">
-    </div>
-  </section>
 
-    <section class="campus-life">
-    <h2>Vida en el Campus</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80" alt="Estudiantes en biblioteca">
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img7.jpg" alt="Lenguajes">
+        </div>
+        <div class="card-back">
+          <h3>Lenguajes</h3>
+          <p>Desarrollar las capacidades comunicativas en múltiples formas de expresión.</p>
+        </div>
       </div>
-      <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1543269865-cbf427c3887a?auto=format&fit=crop&w=800&q=80" alt="Grupo de estudio al aire libre"> </div> <div class="gallery-item">
-        <img src="https://images.unsplash.com/photo-1560780923-4e3e61465d64?auto=format&fit=crop&w=800&q=80" alt="Equipo deportivo celebrando">
+      <div class="card-info">
+        <h3>Lenguajes</h3>
+        <p>Desarrollar las capacidades comunicativas en múltiples formas de expresión.</p>
       </div>
     </div>
-  </section>
 
-    <section class="testimonials">
-    <h2>Lo que dicen nuestros estudiantes</h2>
-    <div class="testimonial-container">
-      <div class="testimonial-card">
-        <blockquote>"Esta universidad cambió mi vida. Los profesores son increíbles y las oportunidades de prácticas me consiguieron un trabajo antes de graduarme."</blockquote>
-        <p class="author">- Ana García, Ingeniería de Software</p>
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img4.jpg" alt="De lo Humano y lo Comunitario">
+        </div>
+        <div class="card-back">
+          <h3>De lo Humano y lo Comunitario</h3>
+          <p>Se centra en el individuo como ser único y en su interacción con la comunidad.</p>
+        </div>
       </div>
-      <div class="testimonial-card">
-        <blockquote>"El ambiente es muy internacional. Hice amigos de todo el mundo y la experiencia en las organizaciones estudiantiles fue muy enriquecedora."</blockquote>
-        <p class="author">- David Chen, Negocios Internacionales</p>
-      </div>
-      <div class="testimonial-card">
-        <blockquote>"El programa de Artes es fantástico. Tienes la libertad de explorar tu creatividad con el apoyo de mentores que realmente se preocupan por tu arte."</blockquote>
-        <p class="author">- Sofía Mendoza, Diseño Gráfico</p>
+      <div class="card-info">
+        <h3>De lo Humano y lo Comunitario</h3>
+        <p>Se centra en el individuo como ser único y en su interacción con la comunidad.</p>
       </div>
     </div>
-  </section>
+
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img5.jpg" alt="Ética, Naturaleza y Sociedades">
+        </div>
+        <div class="card-back">
+          <h3>Ética, Naturaleza y Sociedades</h3>
+          <p>Explora la relación del ser humano con la naturaleza y la sociedad.</p>
+        </div>
+      </div>
+      <div class="card-info">
+        <h3>Ética, Naturaleza y Sociedades</h3>
+        <p>Explora la relación del ser humano con la naturaleza y la sociedad.</p>
+      </div>
+    </div>
+
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img6.jpg" alt="Educación Física">
+        </div>
+        <div class="card-back">
+          <h3>Educación Física</h3>
+          <p>Promueve el desarrollo integral del cuerpo mediante el movimiento, el juego y la actividad física.</p>
+        </div>
+      </div>
+      <div class="card-info">
+        <h3>Educación Física</h3>
+        <p>Promueve el desarrollo integral del cuerpo mediante el movimiento, el juego y la actividad física.</p>
+      </div>
+    </div>
+
+    <div class="card-flip">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="imagenes/img9.jpg" alt="Artes y Experiencias Estéticas">
+        </div>
+        <div class="card-back">
+          <h3>Artes y Experiencias Estéticas</h3>
+          <p>Desarrollo de la sensibilidad, la creatividad y la apreciación estética a través de la práctica artística y la exploración cultural.</p>
+        </div>
+      </div>
+      <div class="card-info">
+        <h3>Artes y Experiencias Estéticas</h3>
+        <p>Desarrollo de la sensibilidad, la creatividad y la apreciación estética a través de la práctica artística y la exploración cultural.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .areas-formativas {
+    background: linear-gradient(135deg, #ffcc00 0%, #ffa500 100%);
+    padding: 60px 10%;
+    text-align: center;
+    border-radius: 12px;
+    margin: 50px auto;
+    max-width: 1200px;
+    animation: fadeInSection 1.2s ease forwards;
+  }
+
+  .areas-formativas h2 {
+    color: #333;
+    font-size: 2.4rem;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+    justify-items: center;
+  }
+
+  .card-flip {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: 15px;
+  }
+
+  .card-flip:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  }
+
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-back {
+    background: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .card-back h3 {
+    color: #ffa500;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .card-back p {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .card-info {
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .card-info h3 {
+    color: #ffa500;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .card-info p {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .card-info:hover {
+    transform: translateY(-5px);
+  }
+
+  @keyframes fadeInSection {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  @media (max-width: 768px) {
+    .areas-formativas {
+      padding: 40px 5%;
+    }
+    .areas-formativas h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+
+
+
+<hr>
+
+<section class="about">
+  <div class="about-content">
+    <h2>Nuestra Misión</h2>
+    <p>El Colegio Montessori es una institución privada, comprometida con la formación y el desarrollo de habilidades, capacidades, actitudes y valores, capaz de moldear individuos con una educación integral de calidad e innovadora, preparándolos para su incorporación a la sociedad y para todos los conocimientos y aprendizajes a lo largo de su vida.</p>
+    <p>Con un cuerpo docente de primer nivel y instalaciones de vanguardia, ofrecemos un ambiente de aprendizaje dinámico y multicultural.</p>
+  </div>
+  <div class="about-image">
+    <img src="imagenes/img10.jpg" alt="Imagen institucional">
+  </div>
+</section>
+
+<style>
+  /* --- ESTILO NUESTRA MISIÓN --- */
+  .about {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 60px 10%;
+    background: linear-gradient(135deg, #fff8e1, #ffecb3);
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeInSection 1s ease-out;
+  }
+
+  .about-content {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+    animation: slideInLeft 1s ease-out;
+  }
+
+  .about-content h2 {
+    font-size: 2.2em;
+    color: #ffa500;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+  }
+
+  .about-content h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #ffa500;
+    margin-top: 8px;
+    border-radius: 2px;
+  }
+
+  .about-content p {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    animation: fadeInText 1.5s ease-out;
+  }
+
+  .about-image {
+    flex: 1;
+    text-align: center;
+    animation: slideInRight 1s ease-out;
+  }
+
+  .about-image img {
+    width: 90%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease;
+  }
+
+  .about-image img:hover {
+    transform: scale(1.05);
+  }
+
+  /* --- ANIMACIONES --- */
+  @keyframes fadeInSection {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 900px) {
+    .about {
+      flex-direction: column-reverse;
+      text-align: center;
+      padding: 40px 5%;
+    }
+
+    .about-content {
+      max-width: 100%;
+    }
+
+    .about-image img {
+      max-width: 350px;
+      margin-bottom: 25px;
+    }
+  }
+</style>
+
+
+<section class="actividades-extracurriculares">
+  <h2>Actividades Extra Curriculares</h2>
+  <p class="descripcion">
+    Se contarán con actividades extracurriculares después del horario de clases, permitiendo desarrollar habilidades sociales, 
+    fomentar la comunicación, el trabajo en equipo y la resolución de conflictos. Además, promueven la confianza en sí mismos 
+    y ayudan a los estudiantes a descubrir nuevos intereses y pasatiempos.
+  </p>
+
+  <div class="actividades-container">
+    <div class="actividad-card">
+      <span class="icon">📘</span>
+      <h3>Ayudantía en tareas</h3>
+      <p>Apoyo académico y orientación en los deberes escolares.</p>
+    </div>
+
+    <div class="actividad-card">
+      <span class="icon">💃</span>
+      <h3>Danza</h3>
+      <p>Expresión artística a través del ritmo y el movimiento.</p>
+    </div>
+
+    <div class="actividad-card">
+      <span class="icon">⚽</span>
+      <h3>Fútbol</h3>
+      <p>Fomento del trabajo en equipo, la disciplina y la condición física.</p>
+    </div>
+
+    <div class="actividad-card">
+      <span class="icon">🎨</span>
+      <h3>Pintura</h3>
+      <p>Exploración de la creatividad mediante el arte visual.</p>
+    </div>
+  </div>
+
+  <div class="horario">
+    <h4>Horario establecido:</h4>
+    <p><b>1:15 p.m. a 3:00 p.m.</b></p>
+  </div>
+</section>
+
+<style>
+  .actividades-extracurriculares {
+    background: linear-gradient(135deg, #ffa500 0%, #ffcc00 100%);
+    padding: 60px 25px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 50px;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .actividades-extracurriculares h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .descripcion {
+    color: #333;
+    max-width: 850px;
+    margin: 0 auto 40px auto;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .actividades-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    justify-items: center;
+  }
+
+  .actividad-card {
+    background-color: #fff;
+    border-radius: 14px;
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 280px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    animation: slideUp 0.8s ease forwards;
+  }
+
+  .actividad-card:nth-child(1) { animation-delay: 0.2s; }
+  .actividad-card:nth-child(2) { animation-delay: 0.4s; }
+  .actividad-card:nth-child(3) { animation-delay: 0.6s; }
+  .actividad-card:nth-child(4) { animation-delay: 0.8s; }
+
+  .actividad-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .actividad-card .icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+    color: #ffa500;
+  }
+
+  .actividad-card h3 {
+    color: #ffa500;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .actividad-card p {
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .horario {
+    margin-top: 40px;
+    background: #fff;
+    display: inline-block;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: fadeIn 1.2s ease;
+  }
+
+  .horario h4 {
+    color: #ffa500;
+    margin-bottom: 10px;
+  }
+
+  .horario p {
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  @keyframes slideUp {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
+
+
+<section class="testimonials">
+  <h2>Horarios y Modalidad</h2>
+
+  <!-- Botón centrado -->
+  <button class="toggle-info" onclick="toggleTable()">Ver horarios y modalidad</button>
+
+  <!-- Tabla que se muestra/oculta -->
+  <div id="info-table" class="info-table" style="display: none;">
+    <table>
+      <tr>
+        <th>HORARIOS</th>
+        <th>MODALIDAD</th>
+      </tr>
+      <tr>
+        <td>
+          Las clases se desarrollan de lunes a viernes, en una jornada de 
+          <b>8:00 a.m. a 1:00 p.m.</b>, con un receso de 30 minutos diario para el descanso 
+          y la convivencia escolar.
+        </td>
+        <td>
+          <b>Escolarizada</b> (lunes a viernes)
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<script>
+  function toggleTable() {
+    const table = document.getElementById('info-table');
+    table.style.display = (table.style.display === 'none') ? 'block' : 'none';
+  }
+</script>
+
+<style>
+  .testimonials {
+    background-color: #ffcc00; /* Amarillo principal */
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+
+  .testimonials h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .toggle-info {
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .toggle-info:hover {
+    background-color: #e69500;
+    transform: scale(1.05);
+  }
+
+  .info-table {
+    margin-top: 30px;
+    display: none;
+    animation: fadeIn 0.6s ease;
+  }
+
+  .info-table table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .info-table th {
+    background-color: #ffa500;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+  }
+
+  .info-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+</style>
+
 
   <section class="cta">
-    <h2>¿Listo para empezar tu futuro?</h2>
+  <div class="cta-content">
     <p>No esperes más. ¡Inscríbete ahora y forma parte de nuestra comunidad!</p>
-    <a href="#" class="cta-button">Inscripciones Abiertas</a>
-  </section>
+    <a href="pagos.html" class="purchase-button">Inscripciones Abiertas</a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: linear-gradient(135deg, #ffb300, #ffcc00, #ffa500);
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 20px;
+    margin: 70px auto;
+    max-width: 1000px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  }
+
+  .cta-content {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeSlideUp 1.3s ease forwards;
+  }
+
+  .cta p {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-shadow: 1px 1px 5px rgba(255,255,255,0.6);
+    animation: textGlow 3s ease-in-out infinite alternate;
+  }
+
+  .purchase-button {
+    display: inline-block;
+    background-color: #ff6600;
+    color: #fff;
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.5);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .purchase-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+  }
+
+  .purchase-button:hover::before {
+    left: 130%;
+  }
+
+  .purchase-button:hover {
+    background-color: #ff8800;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
+  }
+
+  /* 🔹 Animaciones */
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  @keyframes fadeSlideUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes textGlow {
+    0% {text-shadow: 0 0 5px #fff, 0 0 10px #ffb300;}
+    100% {text-shadow: 0 0 15px #fff, 0 0 25px #ffa500;}
+  }
+
+  /* 🔹 Responsivo */
+  @media (max-width: 768px) {
+    .cta {
+      padding: 60px 15px;
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+    }
+
+    .purchase-button {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
+  }
+</style>
+
 
 </main>
-<footer>© 2025 Portal Educativo - Todos los derechos reservados</footer>
+<footer>© 2025 Instituto María Montessori - Todos los derechos reservados</footer>
 
 <script>
   /* --- CÓDIGO DEL CARRUSEL --- */
